@@ -22,6 +22,16 @@ final class FileBrowserStore: ObservableObject {
         rootURL?.neoDisplayPath ?? "Choose a folder to begin."
     }
 
+    var previewEntry: FileSystemEntry? {
+        for index in columns.indices.reversed() {
+            if let entry = selectedEntry(in: index) {
+                return entry
+            }
+        }
+
+        return nil
+    }
+
     var stagedMoveDescription: String {
         guard let stagedMove else {
             return "No move queued"
@@ -166,6 +176,32 @@ final class FileBrowserStore: ObservableObject {
         }
     }
 
+    func open(_ entry: FileSystemEntry) {
+        guard !entry.isDirectory else {
+            return
+        }
+
+        openURL(entry.url)
+    }
+
+    func openWithDefaultApp(_ entry: FileSystemEntry) {
+        guard !entry.isDirectory else {
+            return
+        }
+
+        openURL(entry.url)
+    }
+
+    func revealInFinder(_ entry: FileSystemEntry) {
+        NSWorkspace.shared.activateFileViewerSelecting([entry.url])
+    }
+
+    func copyPath(_ entry: FileSystemEntry) {
+        let pasteboard = NSPasteboard.general
+        pasteboard.clearContents()
+        pasteboard.setString(entry.url.path, forType: .string)
+    }
+
     func dismissAlert() {
         alertContext = nil
     }
@@ -227,5 +263,15 @@ final class FileBrowserStore: ObservableObject {
 
     private func presentError(title: String, message: String) {
         alertContext = AlertContext(title: title, message: message)
+    }
+
+    private func openURL(_ url: URL) {
+        guard NSWorkspace.shared.open(url) else {
+            presentError(
+                title: "Open Failed",
+                message: "Neo Files couldn't open \(url.lastPathComponent)."
+            )
+            return
+        }
     }
 }

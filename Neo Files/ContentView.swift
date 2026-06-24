@@ -26,22 +26,35 @@ struct ContentView: View {
                             .foregroundStyle(NeoPalette.secondary)
                     }
 
-                    ScrollView(.horizontal, showsIndicators: true) {
-                        HStack(alignment: .top, spacing: 18) {
-                            ForEach(Array(store.columns.indices), id: \.self) { index in
-                                BrowserColumnView(
-                                    column: store.columns[index],
-                                    selectedURL: store.selectedURL(for: index),
-                                    selectedEntry: store.selectedEntry(in: index),
-                                    stagedMove: store.stagedMove,
-                                    canMoveHere: store.canMoveStagedItem(to: store.columns[index].directoryURL),
-                                    onSelect: { store.select($0, in: index) },
-                                    onStageSelection: { store.stageSelection(in: index) },
-                                    onMoveHere: { store.moveStagedItem(to: store.columns[index].directoryURL) }
-                                )
+                    HStack(alignment: .top, spacing: 18) {
+                        ScrollView(.horizontal, showsIndicators: true) {
+                            HStack(alignment: .top, spacing: 18) {
+                                ForEach(Array(store.columns.indices), id: \.self) { index in
+                                    BrowserColumnView(
+                                        column: store.columns[index],
+                                        selectedURL: store.selectedURL(for: index),
+                                        selectedEntry: store.selectedEntry(in: index),
+                                        stagedMove: store.stagedMove,
+                                        canMoveHere: store.canMoveStagedItem(to: store.columns[index].directoryURL),
+                                        onSelect: { store.select($0, in: index) },
+                                        onStageSelection: { store.stageSelection(in: index) },
+                                        onMoveHere: { store.moveStagedItem(to: store.columns[index].directoryURL) },
+                                        onOpen: store.open,
+                                        onOpenWithDefaultApp: store.openWithDefaultApp,
+                                        onRevealInFinder: store.revealInFinder,
+                                        onCopyPath: store.copyPath
+                                    )
+                                }
                             }
+                            .padding(.bottom, 8)
                         }
-                        .padding(.bottom, 8)
+
+                        PreviewPaneView(
+                            entry: store.previewEntry,
+                            onOpen: store.open,
+                            onRevealInFinder: store.revealInFinder,
+                            onCopyPath: store.copyPath
+                        )
                     }
                 }
             }

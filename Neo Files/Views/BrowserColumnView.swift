@@ -9,6 +9,10 @@ struct BrowserColumnView: View {
     let onSelect: (FileSystemEntry) -> Void
     let onStageSelection: () -> Void
     let onMoveHere: () -> Void
+    let onOpen: (FileSystemEntry) -> Void
+    let onOpenWithDefaultApp: (FileSystemEntry) -> Void
+    let onRevealInFinder: (FileSystemEntry) -> Void
+    let onCopyPath: (FileSystemEntry) -> Void
 
     private let badgeColumns = [GridItem(.adaptive(minimum: 70), spacing: 8, alignment: .leading)]
 
@@ -95,7 +99,11 @@ struct BrowserColumnView: View {
                             entry: entry,
                             isSelected: selectedURL == entry.url,
                             isStaged: stagedMove?.entry.url == entry.url,
-                            onSelect: { onSelect(entry) }
+                            onSelect: { onSelect(entry) },
+                            onOpen: { onOpen(entry) },
+                            onOpenWithDefaultApp: { onOpenWithDefaultApp(entry) },
+                            onRevealInFinder: { onRevealInFinder(entry) },
+                            onCopyPath: { onCopyPath(entry) }
                         )
                     }
                 }

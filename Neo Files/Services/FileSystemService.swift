@@ -1,4 +1,5 @@
 import Foundation
+import UniformTypeIdentifiers
 
 struct FileSystemService {
     private let fileManager = FileManager.default
@@ -6,6 +7,8 @@ struct FileSystemService {
     func loadDirectory(at url: URL) throws -> DirectorySnapshot {
         let resourceKeys: Set<URLResourceKey> = [
             .contentTypeKey,
+            .contentModificationDateKey,
+            .fileSizeKey,
             .isDirectoryKey,
             .isPackageKey,
             .localizedNameKey
@@ -24,7 +27,15 @@ struct FileSystemService {
 
             let isDirectory = (resourceValues.isDirectory ?? false) && !(resourceValues.isPackage ?? false)
             let fileType = Self.fileTypeLabel(for: childURL, isDirectory: isDirectory)
-            return FileSystemEntry(url: childURL, isDirectory: isDirectory, fileType: fileType)
+            return FileSystemEntry(
+                url: childURL,
+                isDirectory: isDirectory,
+                fileType: fileType,
+                contentTypeIdentifier: resourceValues.contentType?.identifier,
+                contentTypeDescription: resourceValues.contentType?.localizedDescription,
+                fileSize: resourceValues.fileSize.map(Int64.init),
+                contentModifiedDate: resourceValues.contentModificationDate
+            )
         }
         .sorted { lhs, rhs in
             if lhs.isDirectory != rhs.isDirectory {

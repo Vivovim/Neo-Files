@@ -5,6 +5,10 @@ struct ColumnEntryRow: View {
     let isSelected: Bool
     let isStaged: Bool
     let onSelect: () -> Void
+    let onOpen: () -> Void
+    let onOpenWithDefaultApp: () -> Void
+    let onRevealInFinder: () -> Void
+    let onCopyPath: () -> Void
 
     var body: some View {
         Button(action: onSelect) {
@@ -53,5 +57,26 @@ struct ColumnEntryRow: View {
             )
         }
         .buttonStyle(.plain)
+        .contextMenu {
+            if !entry.isDirectory {
+                Button("Open") {
+                    onOpen()
+                }
+
+                Button("Open with Default App") {
+                    onOpenWithDefaultApp()
+                }
+
+                Divider()
+
+                Button("Reveal in Finder") {
+                    onRevealInFinder()
+                }
+
+                Button("Copy Path") {
+                    onCopyPath()
+                }
+            }
+        }
     }
 }

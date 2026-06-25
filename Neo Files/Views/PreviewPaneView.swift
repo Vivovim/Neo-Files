@@ -128,6 +128,30 @@ private extension PreviewPaneView {
                         .frame(height: 250)
                         .previewSurface()
                 }
+            } else if entry.isIWorkDocument {
+                VStack(alignment: .leading, spacing: 16) {
+                    HStack(spacing: 10) {
+                        Image(systemName: entry.isNumbersDocument ? "tablecells.fill" : "doc.text.fill")
+                            .font(.system(size: 28, weight: .black))
+                            .foregroundStyle(NeoPalette.primary)
+
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text(entry.isNumbersDocument ? "Numbers Preview" : "Pages Preview")
+                                .font(.system(size: 16, weight: .bold, design: .rounded))
+                                .foregroundStyle(NeoPalette.primary)
+
+                            Text(entry.isNumbersDocument
+                                 ? "Numbers spreadsheets render through Quick Look here, so package-based files preview inline without opening Numbers."
+                                 : "Pages documents render through Quick Look here, so package-based files preview inline without opening Pages.")
+                                .font(.system(size: 13, weight: .medium, design: .rounded))
+                                .foregroundStyle(NeoPalette.secondary)
+                        }
+                    }
+
+                    IWorkPreviewView(url: entry.url)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .previewSurface()
+                }
             } else {
                 QuickLookPreviewView(url: entry.url)
                     .previewSurface()
@@ -135,7 +159,7 @@ private extension PreviewPaneView {
         } else {
             placeholder(
                 title: "Inspector Ready",
-                message: "Select a file from any column to see a Quick Look preview and metadata. `.txt`, `.jpg`, `.png`, `.mp3`, and `.mov` are great starting points."
+                message: "Select a file from any column to see a Quick Look preview and metadata. `.txt`, `.jpg`, `.png`, `.pages`, `.numbers`, `.mp3`, and `.mov` are all fair game."
             )
         }
     }

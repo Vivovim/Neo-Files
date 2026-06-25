@@ -117,6 +117,15 @@ struct FileSystemService {
             return "No Ext"
         }
 
+        switch extensionText.lowercased() {
+        case "pages":
+            return "Pages"
+        case "numbers":
+            return "Numbers"
+        default:
+            break
+        }
+
         return extensionText.uppercased()
     }
 }

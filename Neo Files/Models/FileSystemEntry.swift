@@ -12,6 +12,10 @@ struct FileSystemEntry: Identifiable, Hashable {
 
     var id: URL { url }
 
+    private var normalizedPathExtension: String {
+        url.pathExtension.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+    }
+
     var contentType: UTType? {
         guard let contentTypeIdentifier else {
             return nil
@@ -28,18 +32,50 @@ struct FileSystemEntry: Identifiable, Hashable {
         contentType?.conforms(to: .movie) == true || contentType?.conforms(to: .video) == true
     }
 
+    var isPagesDocument: Bool {
+        normalizedPathExtension == "pages" || contentTypeIdentifier == "com.apple.iwork.pages.pages"
+    }
+
+    var isNumbersDocument: Bool {
+        normalizedPathExtension == "numbers" || contentTypeIdentifier == "com.apple.iwork.numbers.numbers"
+    }
+
+    var isIWorkDocument: Bool {
+        isPagesDocument || isNumbersDocument
+    }
+
     var displayName: String {
         let lastPathComponent = url.lastPathComponent
         return lastPathComponent.isEmpty ? url.path : lastPathComponent
     }
 
     var detailLabel: String {
-        isDirectory ? "Folder" : fileType
+        if isDirectory {
+            return "Folder"
+        }
+
+        if isPagesDocument {
+            return "Pages"
+        }
+
+        if isNumbersDocument {
+            return "Numbers"
+        }
+
+        return fileType
     }
 
     var inspectorKindLabel: String {
         if isDirectory {
             return "Folder"
+        }
+
+        if isPagesDocument {
+            return "Pages Document"
+        }
+
+        if isNumbersDocument {
+            return "Numbers Spreadsheet"
         }
 
         return contentTypeDescription ?? fileType
@@ -66,6 +102,14 @@ struct FileSystemEntry: Identifiable, Hashable {
             if contentType.conforms(to: .text) {
                 return "doc.text.fill"
             }
+        }
+
+        if isPagesDocument {
+            return "doc.text.fill"
+        }
+
+        if isNumbersDocument {
+            return "tablecells.fill"
         }
 
         return "doc.fill"

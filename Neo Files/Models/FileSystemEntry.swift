@@ -24,6 +24,10 @@ struct FileSystemEntry: Identifiable, Hashable {
         contentType?.conforms(to: .audio) == true
     }
 
+    var isVideoFile: Bool {
+        contentType?.conforms(to: .movie) == true || contentType?.conforms(to: .video) == true
+    }
+
     var displayName: String {
         let lastPathComponent = url.lastPathComponent
         return lastPathComponent.isEmpty ? url.path : lastPathComponent

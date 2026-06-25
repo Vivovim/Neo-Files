@@ -106,6 +106,28 @@ private extension PreviewPaneView {
                         .frame(height: 90)
                         .previewSurface()
                 }
+            } else if entry.isVideoFile {
+                VStack(alignment: .leading, spacing: 16) {
+                    HStack(spacing: 10) {
+                        Image(systemName: "film.circle.fill")
+                            .font(.system(size: 28, weight: .black))
+                            .foregroundStyle(NeoPalette.primary)
+
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text("Video Preview")
+                                .font(.system(size: 16, weight: .bold, design: .rounded))
+                                .foregroundStyle(NeoPalette.primary)
+
+                            Text("Playback is handled inline here for `.mp4`, `.m4v`, `.mov`, and other video files.")
+                                .font(.system(size: 13, weight: .medium, design: .rounded))
+                                .foregroundStyle(NeoPalette.secondary)
+                        }
+                    }
+
+                    VideoPreviewView(url: entry.url)
+                        .frame(height: 250)
+                        .previewSurface()
+                }
             } else {
                 QuickLookPreviewView(url: entry.url)
                     .previewSurface()

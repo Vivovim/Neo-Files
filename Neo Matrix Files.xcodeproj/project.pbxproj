@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		E3140C632FEB6094006EF6BF /* Neo Files.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Neo Files.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E3140C632FEB6094006EF6BF /* Neo Matrix Files.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Neo Matrix Files.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -40,7 +40,7 @@
 		E3140C642FEB6094006EF6BF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E3140C632FEB6094006EF6BF /* Neo Files.app */,
+				E3140C632FEB6094006EF6BF /* Neo Matrix Files.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -48,9 +48,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E3140C622FEB6094006EF6BF /* Neo Files */ = {
+		E3140C622FEB6094006EF6BF /* Neo Matrix Files */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E3140C6E2FEB6095006EF6BF /* Build configuration list for PBXNativeTarget "Neo Files" */;
+			buildConfigurationList = E3140C6E2FEB6095006EF6BF /* Build configuration list for PBXNativeTarget "Neo Matrix Files" */;
 			buildPhases = (
 				E3140C5F2FEB6094006EF6BF /* Sources */,
 				E3140C602FEB6094006EF6BF /* Frameworks */,
@@ -63,11 +63,11 @@
 			fileSystemSynchronizedGroups = (
 				E3140C652FEB6094006EF6BF /* Neo Files */,
 			);
-			name = "Neo Files";
+			name = "Neo Matrix Files";
 			packageProductDependencies = (
 			);
 			productName = "Neo Files";
-			productReference = E3140C632FEB6094006EF6BF /* Neo Files.app */;
+			productReference = E3140C632FEB6094006EF6BF /* Neo Matrix Files.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -85,7 +85,7 @@
 					};
 				};
 			};
-			buildConfigurationList = E3140C5E2FEB6094006EF6BF /* Build configuration list for PBXProject "Neo Files" */;
+			buildConfigurationList = E3140C5E2FEB6094006EF6BF /* Build configuration list for PBXProject "Neo Matrix Files" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -99,7 +99,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E3140C622FEB6094006EF6BF /* Neo Files */,
+				E3140C622FEB6094006EF6BF /* Neo Matrix Files */,
 			);
 		};
 /* End PBXProject section */
@@ -260,7 +260,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readwrite;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "Neo Files";
+				INFOPLIST_KEY_CFBundleDisplayName = "Neo Matrix Files";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -305,7 +305,7 @@
 				ENABLE_RESOURCE_ACCESS_USB = NO;
 				ENABLE_USER_SELECTED_FILES = readwrite;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "Neo Files";
+				INFOPLIST_KEY_CFBundleDisplayName = "Neo Matrix Files";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -328,7 +328,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E3140C5E2FEB6094006EF6BF /* Build configuration list for PBXProject "Neo Files" */ = {
+		E3140C5E2FEB6094006EF6BF /* Build configuration list for PBXProject "Neo Matrix Files" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E3140C6C2FEB6095006EF6BF /* Debug */,
@@ -337,7 +337,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E3140C6E2FEB6095006EF6BF /* Build configuration list for PBXNativeTarget "Neo Files" */ = {
+		E3140C6E2FEB6095006EF6BF /* Build configuration list for PBXNativeTarget "Neo Matrix Files" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E3140C6F2FEB6095006EF6BF /* Debug */,

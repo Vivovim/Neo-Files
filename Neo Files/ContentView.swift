@@ -92,7 +92,7 @@ private extension ContentView {
     var header: some View {
         HStack(alignment: .top) {
             VStack(alignment: .leading, spacing: 8) {
-                Text("Neo Files")
+                Text("Neo Matrix Files")
                     .font(.system(size: 34, weight: .black, design: .rounded))
                     .foregroundStyle(NeoPalette.primary)
                     .shadow(color: NeoPalette.primary.opacity(0.45), radius: 12)
